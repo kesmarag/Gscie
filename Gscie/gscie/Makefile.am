@@ -29,6 +29,7 @@ source_h = \
   $(NULL)
 
 source_c = \
+  gscie.c \
   gscie-array.c \
   $(NULL)
 

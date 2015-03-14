@@ -132,7 +132,7 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libgscie_1_0_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__objects_1 =
-am__objects_2 = gscie-array.lo $(am__objects_1)
+am__objects_2 = gscie.lo gscie-array.lo $(am__objects_1)
 am__objects_3 = $(am__objects_1)
 am_libgscie_1_0_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libgscie_1_0_la_OBJECTS = $(am_libgscie_1_0_la_OBJECTS)
@@ -357,6 +357,7 @@ source_h = \
   $(NULL)
 
 source_c = \
+  gscie.c \
   gscie-array.c \
   $(NULL)
 
@@ -515,6 +516,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/gscie-array.Plo
+include ./$(DEPDIR)/gscie.Plo
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

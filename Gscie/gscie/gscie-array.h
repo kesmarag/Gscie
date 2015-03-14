@@ -30,12 +30,9 @@ struct _GscieArrayClass
 	/* class members */
 };
 
-/* used by MAMAN_TYPE_BAR */
 GType gscie_array_get_type(void);
-//GscieArray * gscie_array_new(void);
-
-//GscieArray *gscie_array_new_length(const guint l);
-
 guint gscie_array_get_length(GscieArray *self);
+void gscie_array_add(GscieArray *self, gdouble node);
+void gscie_array_print(GscieArray *self);
 
 #endif /* GSCIE_ARRAY_H_ */
