@@ -27,7 +27,7 @@ and/or use gtk-doc annotations.  -->
           <instance-parameter name="self" transfer-ownership="none">
             <type name="Array" c:type="GscieArray*"/>
           </instance-parameter>
-          <parameter name="node" transfer-ownership="none">
+          <parameter name="val" transfer-ownership="none">
             <type name="gdouble" c:type="gdouble"/>
           </parameter>
         </parameters>
@@ -40,6 +40,22 @@ and/or use gtk-doc annotations.  -->
           <instance-parameter name="self" transfer-ownership="none">
             <type name="Array" c:type="GscieArray*"/>
           </instance-parameter>
+        </parameters>
+      </method>
+      <method name="load_from_file" c:identifier="gscie_array_load_from_file">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <type name="Array" c:type="GscieArray*"/>
+          </instance-parameter>
+          <parameter name="filename" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="col" transfer-ownership="none">
+            <type name="guint" c:type="const guint"/>
+          </parameter>
         </parameters>
       </method>
       <method name="print" c:identifier="gscie_array_print">
@@ -81,25 +97,5 @@ and/or use gtk-doc annotations.  -->
     </record>
     <record name="ArrayPrivate" c:type="GscieArrayPrivate" disguised="1">
     </record>
-    <function name="read_vector_from_file"
-              c:identifier="gscie_read_vector_from_file">
-      <return-value transfer-ownership="none">
-        <type name="none" c:type="void"/>
-      </return-value>
-      <parameters>
-        <parameter name="vec" transfer-ownership="none">
-          <type name="Array" c:type="GscieArray*"/>
-        </parameter>
-        <parameter name="filename" transfer-ownership="none">
-          <type name="utf8" c:type="const gchar*"/>
-        </parameter>
-        <parameter name="mode" transfer-ownership="none">
-          <type name="gchar" c:type="const gchar"/>
-        </parameter>
-        <parameter name="i" transfer-ownership="none">
-          <type name="guint" c:type="const guint"/>
-        </parameter>
-      </parameters>
-    </function>
   </namespace>
 </repository>

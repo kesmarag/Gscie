@@ -111,33 +111,24 @@ static void gscie_array_init(GscieArray *self) {
 guint gscie_array_get_length(GscieArray *self){
 	guint length;
 	g_object_get(self,"length",&length,NULL);
+	/*
 	int i;
 	double sum = 0;
 	#pragma omp parallel for reduction (+:sum)
 	for(i=1;i<100;i=i+1){
 		sum +=(double)i*(double)i;}
 	g_print("sum = %f\n",sum);
-
-	GFile * test_file = g_file_new_for_path("/home/kesmarag/hello.txt");
-	gboolean Bool = FALSE;
-	Bool = g_file_query_exists(test_file,NULL);
-	if (Bool == FALSE) g_print ("file doesn't exist!\n");
-	GInputStream * dis ;
-	dis = g_file_read (test_file, NULL, NULL);
-	GDataInputStream * dis_new =  g_data_input_stream_new ((GInputStream*) dis);
-	gchar * line = NULL;
-	line = g_data_input_stream_read_line (dis_new, NULL, NULL, NULL);
-	g_print ("%s\n",line);
+	*/
 	return length;
 
 }
 
 
-void gscie_array_add(GscieArray *self,gdouble node){
+void gscie_array_add(GscieArray *self,gdouble val){
 	self->priv = gscie_array_get_instance_private(self);
 	self->priv->length++;
 	self->priv->data = g_renew(gdouble,self->priv->data,self->priv->length);
-	(self->priv->data)[self->priv->length-1] = node;
+	(self->priv->data)[self->priv->length-1] = val;
 }
 
 void gscie_array_print(GscieArray *self){
@@ -145,3 +136,30 @@ void gscie_array_print(GscieArray *self){
 	gint i;
 	for (i=0;i<self->priv->length;i++) g_print("%f\n",self->priv->data[i]);
 }
+
+void gscie_array_load_from_file(GscieArray *self, const gchar *filename, const guint col){
+	self->priv = gscie_array_get_instance_private(self);
+	g_print ("hello from gscie_array_load_from_file!\n");
+	gchar ** line_split = NULL;
+	gdouble val;
+	GFile * test_file = g_file_new_for_path(filename);
+	gboolean Bool = FALSE;
+	Bool = g_file_query_exists(test_file,NULL);
+	if (Bool == FALSE) {
+		g_print ("file doesn't exist!\n");
+		// ++++
+	}
+	GFileInputStream * dis ;
+	dis = g_file_read (test_file, NULL, NULL);
+	GDataInputStream * dis_new =  g_data_input_stream_new ((GInputStream*) dis);
+	gchar * line = " ";
+	line = g_data_input_stream_read_line (dis_new, NULL, NULL, NULL);
+	while (line){
+		line_split = g_strsplit (line, " ", 0);
+		val = _gscie_double_parse(line_split[col-1]);
+		gscie_array_add(self,val);
+		line = g_data_input_stream_read_line (dis_new, NULL, NULL, NULL);
+	}
+	g_print ("bye from gscie_array_load_from_file!\n");
+}
+

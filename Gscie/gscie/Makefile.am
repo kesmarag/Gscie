@@ -26,11 +26,13 @@ AM_CFLAGS += \
 source_h = \
   $(top_srcdir)/gscie/gscie.h \
   $(top_srcdir)/gscie/gscie-array.h \
+  $(top_srcdir)/gscie/gscie-common.h \
   $(NULL)
 
 source_c = \
   gscie.c \
   gscie-array.c \
+  gscie-common.c \
   $(NULL)
 
 # This is defines the actual library to build.

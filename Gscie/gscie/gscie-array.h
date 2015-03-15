@@ -4,6 +4,7 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <omp.h>
+#include "gscie-common.h"
 
 #define GSCIE_TYPE_ARRAY (gscie_array_get_type ())
 #define GSCIE_ARRAY(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCIE_TYPE_ARRAY, GscieArray))
@@ -32,7 +33,8 @@ struct _GscieArrayClass
 
 GType gscie_array_get_type(void);
 guint gscie_array_get_length(GscieArray *self);
-void gscie_array_add(GscieArray *self, gdouble node);
+void gscie_array_add(GscieArray *self, gdouble val);
 void gscie_array_print(GscieArray *self);
+void gscie_array_load_from_file(GscieArray *self, const gchar *filename,const guint col);
 
 #endif /* GSCIE_ARRAY_H_ */
